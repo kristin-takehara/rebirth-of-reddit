@@ -1,5 +1,14 @@
 @import "./partials/variables";
 
+body {
+  background: url("/assets/bg.jpg");
+  background-size: cover;
+}
+
+#header {
+  background-color: white;
+  padding-left: 10px;
+}
 
 .flat_menu_buttons {
   display: center;
@@ -12,7 +21,7 @@
   background-color: grey;
   text-align: center;
   font-family: $boldFont;
-  font-size: 18px;
+  font-size: 25px;
   margin-right: 40px;
 }
 
@@ -21,7 +30,7 @@
   text-align: center;
   background-color: grey;
   font-family: $boldFont;
-  font-size: 18px;
+  font-size: 25px;
   margin-right: 40px;
 }
 
@@ -30,7 +39,7 @@
   text-align: center;
   background-color: grey;
   font-family: $boldFont;
-  font-size: 18px;
+  font-size: 25px;
   margin-right: 10px;
 }
 

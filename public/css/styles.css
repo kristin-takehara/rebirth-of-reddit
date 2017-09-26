@@ -1,3 +1,11 @@
+body {
+  background: url("/assets/bg.jpg");
+  background-size: cover; }
+
+#header {
+  background-color: white;
+  padding-left: 10px; }
+
 .flat_menu_buttons {
   display: center;
   background-color: grey;
@@ -8,7 +16,7 @@
   background-color: grey;
   text-align: center;
   font-family: Oswald;
-  font-size: 18px;
+  font-size: 25px;
   margin-right: 40px; }
 
 #my_boards {
@@ -16,7 +24,7 @@
   text-align: center;
   background-color: grey;
   font-family: Oswald;
-  font-size: 18px;
+  font-size: 25px;
   margin-right: 40px; }
 
 #get_the_app {
@@ -24,7 +32,7 @@
   text-align: center;
   background-color: grey;
   font-family: Oswald;
-  font-size: 18px;
+  font-size: 25px;
   margin-right: 10px; }
 
 .subreddit_1 {
