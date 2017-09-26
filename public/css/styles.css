@@ -1,21 +1,31 @@
 .flat_menu_buttons {
   display: center;
-  background-color: red; }
+  background-color: grey;
+  margin: 0px; }
 
-.random {
+#random {
+  display: inline;
+  background-color: grey;
+  text-align: center;
+  font-family: Oswald;
+  font-size: 18px;
+  margin-right: 40px; }
+
+#my_boards {
   display: inline;
   text-align: center;
-  background-color: grey; }
+  background-color: grey;
+  font-family: Oswald;
+  font-size: 18px;
+  margin-right: 40px; }
 
-.my_boards {
+#get_the_app {
   display: inline;
   text-align: center;
-  background-color: grey; }
-
-.get_the_app {
-  display: inline;
-  text-align: center;
-  background-color: grey; }
+  background-color: grey;
+  font-family: Oswald;
+  font-size: 18px;
+  margin-right: 10px; }
 
 .subreddit_1 {
   background-color: white;
