@@ -104,9 +104,12 @@ function fillTile(callBack){
   };
 }
 
-myBoardsButton.addEventListener("click", loadBoard("https://www.reddit.com/r/pugs/comments/6ibir9/pug_and_dachshund_mix.json"));
-randomButton.addEventListener("click", loadBoard("https://www.reddit.com/r/pugs/comments/72icp4/why_bother_me_when_im_clearly_napping.json"));
-getAppButton.addEventListener("click", loadBoard("https://www.reddit.com/r/pugs/comments/72du9f/pug_for_scale.json"));
+
+randomButton.addEventListener("click", fillTile("https://www.reddit.com/r/pugs/comments/72icp4/why_bother_me_when_im_clearly_napping.json"));
+
+myBoardsButton.addEventListener("click", fillTile("https://www.reddit.com/r/pugs/comments/6ibir9/pug_and_dachshund_mix.json"));
+
+getAppButton.addEventListener("click", fillTile("https://www.reddit.com/r/pugs/comments/72du9f/pug_for_scale.json"));
 
 
 
