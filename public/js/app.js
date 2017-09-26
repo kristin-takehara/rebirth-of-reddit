@@ -22,64 +22,80 @@ function makeRequest(Url, callBack){
 }
 
 //Function to fill each tile with Subreddit content
-function fillTile(cb){
+function fillTile(callBack){
   return function(){
-
     tile.innerHTML = "";
-    makeRequest(cb, printBoard);
+    makeRequest(callBack, printBoard);
 
+
+    //function to return the information from Reddit
     function printBoard(){
       let data = JSON.parse(this.response);
-      var feedArray = data.data.children;
-
+      //this grabs the array of json data
+      let feedArray = data.data.children;
+      //forloop to iterate over the json array of object key/value pairs, isolating the nested data key (of the larger 'data' key) *note: confusing key name(s) - 'data' used twice
       for (let i = 0; i < feedArray.length; i++){
+        //return the isolated index item from the 'feedArray'
+        let dataset = feedArray[i].data;
 
-        var dataset = feedArray[i].data;
+        //create MAIN tile div to hold all necessary div elements
+        let tileMainDiv = document.createElement("div");
+        tileMainDiv.className = "tileMainDiv";
+        tile.appendChild(tileMainDiv);
 
-        let parentDiv = document.createElement("DIV");
-        parentDiv.className = "feedDiv";
-        tile.appendChild(parentDiv);
-
-        let a = document.createElement("A");
+        //create link to reddit
+        let a = document.createElement("a");
         a.href = dataset.url;
-        parentDiv.appendChild(a);
+        tileMainDiv.appendChild(a);
 
-        let picDiv = document.createElement("DIV");
-        picDiv.className = "photoDiv";
-        a.appendChild(picDiv);
+////////////////////////////////////////
+
+        //create IMAGE div
+        let imgDiv = document.createElement("div");
+        imgDiv.className = "imgDiv";
+        a.appendChild(imgDiv);
 
         if(!dataset.preview){
-          picDiv.innerHTML = "";
+          imgDiv.innerHTML = "";
 
         }else if(dataset.preview.images[0].variants.gif){
-          picDiv.style.backgroundImage = `url('${dataset.preview.images[0].variants.gif.source.url}')`;
+          imgDiv.style.backgroundImage = `url('${dataset.preview.images[0].variants.gif.source.url}')`;
         }else{
-          picDiv.style.backgroundImage = `url('${dataset.preview.images[0].source.url}')`;
+          imgDiv.style.backgroundImage = `url('${dataset.preview.images[0].source.url}')`;
         }
 
-        let titleDiv = document.createElement("DIV");
-        titleDiv.className = "titleDiv";
-        parentDiv.appendChild(titleDiv);
 
+        ///TITLE div container
+        let title_Div = document.createElement("div");
+        titleDiv.className = "title_Div";
+        tileMainDiv.appendChild(title_Div);
+
+        //get the permalink to grab the title
         a = document.createElement("a");
-        titleDiv.appendChild(a);
+        title_Div.appendChild(a);
         a.innerHTML = dataset.title;
         a.href = "https://www.reddit.com" + dataset.permalink;
 
-        var subTitleDiv = document.createElement("DIV");
+/////////////////SUBTITLE DIVS////////////
+
+        ///SUBTITLE div container
+        var subTitleDiv = document.createElement("div");
         subTitleDiv.className = "subTitleDiv";
-        parentDiv.appendChild(subTitleDiv);
-        let detailsList = document.createElement("UL");
-        subTitleDiv.appendChild(detailsList);
-        detailsList.className = "detailsList";
-        let author = document.createElement("LI");
+        tileMainDiv.appendChild(subTitleDiv);
+
+        ///SUBTITLE - AUTHOR
+        let author = document.createElement("div");
         detailsList.appendChild(author);
         author.innerHTML = "by " + feedArray[i].data.author;
-        let date = document.createElement("LI");
+
+        ///SUBTITLE - DATE CREATED
+        let date = document.createElement("div");
         detailsList.appendChild(date);
         date.className = "details";
         date.innerHTML = dataset.created_utc;
-        let upVotes = document.createElement("LI");
+
+        ///SUBTITLE - UPVOTES <<<-- *does 'upvotes' replace 'views'?
+        let upVotes = document.createElement("div");
         detailsList.appendChild(upVotes);
         upVotes.className = "details";
         upVotes.innerHTML = dataset.ups + " upvotes";
@@ -88,22 +104,19 @@ function fillTile(cb){
   };
 }
 
-myBoardsButton.addEventListener("click", loadBoard("http://www.reddit.com/r/catpics.json"));
-randomButton.addEventListener("click", loadBoard("http://www.reddit.com/r/mountainsporn.json"));
-getAppButton.addEventListener("click", loadBoard("http://www.reddit.com/r/TravelPorn.json"));
-© 2017 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
+myBoardsButton.addEventListener("click", loadBoard("https://www.reddit.com/r/pugs/comments/6ibir9/pug_and_dachshund_mix.json"));
+randomButton.addEventListener("click", loadBoard("https://www.reddit.com/r/pugs/comments/72icp4/why_bother_me_when_im_clearly_napping.json"));
+getAppButton.addEventListener("click", loadBoard("https://www.reddit.com/r/pugs/comments/72du9f/pug_for_scale.json"));
 
+
+
+
+
+
+///////////////IN CLASS CODE W/ED/////////////
+//*NOTE: study the way to refactor code to be more modular
+
+//*NOTE: start with the largest function that needs to WORK/FUNCTION
 
 
 // function buildSubreddit(subreddit) {
