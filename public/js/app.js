@@ -1,21 +1,57 @@
 console.log('here we go again');
 
-(function makeRequest() {
-  var randomRequest = new XMLHttpRequest();
-  function requestListener() {
-    var randomObj = JSON.parse(this.responseText);
-    console.log(this);
-    document.getElementById("random").innerHTML = randomObj.permalink;
+
+//////////////////Try this the LONG WAY...
+
+//XHR Request
+  var xhrRequest = new XMLHttpRequest();
+  xhrRequest.addEventListener("load", requestListener);
+  xhrRequest.open("GET", "https://www.reddit.com/r/pugs.json");
+  xhrRequest.send();
+
+//Request Listener for the XHR request
+function requestListener() {
+    let redditFeed = JSON.parse(this.responseText);
+    console.log(redditFeed);
+
+    let children = redditFeed.data.children;
+    console.log(children);
+
+//iterate over the reddit json data
+for (var i = 0; i < children.length; i++) {
+
+  let main_TileDiv = document.getElementById("main_TileDiv");
+
+  //IMAGE DATA
+  let image = document.createElement("img");
+  image.className = "imgDiv";
+  console.log(children[i].data.url);
+  image.src = children[i].data.url;
+  main_TileDiv.appendChild(image);
+
+
+
+  //TITLE DATA
+  let title = document.createElement("div");
+  title.className = "title";
+  console.log("title: ", children[i].data.title);
+  title.innerHTML = children[i].data.title;
+  image.appendChild(title);
+
+  //AUTHOR DATA
+  console.log("by", children[i].data.author);
+
+  //CREATED DATA
+  console.log("created: ", children[i].data.created_utc);
+
+  //UPS DATA
+  console.log("ups count: ", children[i].data.ups);
   }
-  makeRequest.addEventListener("load", requestListener);
-  makeRequest.open("GET", "http://www.reddit.com/r/pugs.json");
-  makeRequest.send();
-}());
+
+}
 
 
-
-
-
+///////////////////////////////////////////////
 
 // //Navigation Menu Buttons:
 // //RANDOM
@@ -122,11 +158,11 @@ console.log('here we go again');
 // }
 
 
-// randomButton.addEventListener("click", fillTile("http://www.reddit.com/r/pugs/comments/72icp4/why_bother_me_when_im_clearly_napping.json"));
+// randomButton.addEventListener("click", fillTile("http://www.reddit.com/r/pugs/comments/72icp4/why_bother_me_when_im_clearly_napping/.json"));
 
-// myBoardsButton.addEventListener("click", fillTile("http://www.reddit.com/r/pugs/comments/6ibir9/pug_and_dachshund_mix.json"));
+// myBoardsButton.addEventListener("click", fillTile("http://www.reddit.com/r/pugs/comments/6ibir9/pug_and_dachshund_mix/.json"));
 
-// getAppButton.addEventListener("click", fillTile("http://www.reddit.com/r/pugs/comments/72du9f/pug_for_scale.json"));
+// getAppButton.addEventListener("click", fillTile("http://www.reddit.com/r/pugs/72du9f/pug_for_scale/.json"));
 
 
 

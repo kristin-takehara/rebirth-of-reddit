@@ -35,6 +35,11 @@ body {
   font-size: 25px;
   margin-right: 10px; }
 
-.subreddit_1 {
+.main_TileDiv {
   background-color: white;
-  max-width: 100px; }
+  width: 250px; }
+
+.imgDiv {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top; }
